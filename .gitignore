@@ -1,0 +1,7 @@
+# Large binary artifacts - not tracked in git
+apks/
+decompiled/
+
+# Python
+__pycache__/
+*.pyc

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bluetens Control</title>
+
+  <!-- Vuetify + Material Design Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@3/dist/vuetify.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7/css/materialdesignicons.min.css" rel="stylesheet" />
+  <link href="/css/app.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="app">
+    <v-app theme="dark">
+      <!-- Navigation drawer (device panel sidebar) -->
+      <v-navigation-drawer permanent width="260">
+        <device-panel></device-panel>
+      </v-navigation-drawer>
+
+      <!-- Top app bar -->
+      <v-app-bar density="compact" flat>
+        <v-app-bar-title>Bluetens Control</v-app-bar-title>
+        <v-spacer></v-spacer>
+        <v-btn icon size="small" @click="store.toggleBleLog()">
+          <v-icon>mdi-console</v-icon>
+          <v-tooltip activator="parent" location="bottom">BLE Log</v-tooltip>
+        </v-btn>
+      </v-app-bar>
+
+      <!-- Main content -->
+      <v-main>
+        <v-container fluid class="pa-4">
+          <!-- View tabs -->
+          <v-tabs v-model="store.activeView" density="compact" class="mb-4">
+            <v-tab value="dashboard">
+              <v-icon start>mdi-view-dashboard</v-icon>
+              Dashboard
+            </v-tab>
+            <v-tab value="builder">
+              <v-icon start>mdi-pencil-ruler</v-icon>
+              Builder
+            </v-tab>
+            <v-tab value="files">
+              <v-icon start>mdi-folder</v-icon>
+              Files
+            </v-tab>
+            <v-tab value="shell">
+              <v-icon start>mdi-console-line</v-icon>
+              Shell
+            </v-tab>
+          </v-tabs>
+
+          <!-- Tab content -->
+          <v-window v-model="store.activeView">
+            <v-window-item value="dashboard">
+              <dashboard-view></dashboard-view>
+            </v-window-item>
+            <v-window-item value="builder">
+              <builder-view></builder-view>
+            </v-window-item>
+            <v-window-item value="files">
+              <files-view></files-view>
+            </v-window-item>
+            <v-window-item value="shell">
+              <shell-view></shell-view>
+            </v-window-item>
+          </v-window>
+        </v-container>
+
+        <!-- BLE Log bottom sheet -->
+        <v-expand-transition>
+          <ble-log v-if="store.bleLogVisible"></ble-log>
+        </v-expand-transition>
+      </v-main>
+
+      <!-- Snackbar for notifications -->
+      <v-snackbar
+        v-model="store.snackbar.show"
+        :color="store.snackbar.color"
+        :timeout="3000"
+        location="bottom right"
+      >
+        {{ store.snackbar.text }}
+      </v-snackbar>
+    </v-app>
+  </div>
+
+  <!-- Vue 3 + Vuetify 3 from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@3/dist/vuetify.min.js"></script>
+
+  <!-- App modules -->
+  <script src="/js/store.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/ws.js"></script>
+  <script src="/js/components/DevicePanel.js"></script>
+  <script src="/js/components/Dashboard.js"></script>
+  <script src="/js/components/Builder.js"></script>
+  <script src="/js/components/Files.js"></script>
+  <script src="/js/components/Shell.js"></script>
+  <script src="/js/components/BleLog.js"></script>
+  <script src="/js/components/Timeline.js"></script>
+  <script src="/js/components/SectionEditor.js"></script>
+  <script src="/js/components/BlockEditor.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

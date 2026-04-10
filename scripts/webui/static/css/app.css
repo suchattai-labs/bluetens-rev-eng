@@ -1,0 +1,83 @@
+/* Bluetens Web UI - Custom Styles */
+
+html, body {
+  overflow-y: auto;
+}
+
+/* BLE Log panel at bottom */
+.ble-log-panel {
+  max-height: 250px;
+  overflow-y: auto;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ble-log-panel .log-tx {
+  color: #82b1ff;
+}
+
+.ble-log-panel .log-rx {
+  color: #b9f6ca;
+}
+
+/* Timeline section bars */
+.timeline-container {
+  display: flex;
+  gap: 4px;
+  align-items: stretch;
+  min-height: 60px;
+  overflow-x: auto;
+  padding: 8px 0;
+}
+
+.timeline-section {
+  min-width: 60px;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: outline 0.15s;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.timeline-section.selected {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Shell output area */
+.shell-output {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+  max-height: 500px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.shell-output .cmd-tx {
+  color: #82b1ff;
+}
+
+.shell-output .cmd-rx {
+  color: #b9f6ca;
+}
+
+/* Intensity bar */
+.intensity-bar {
+  height: 24px;
+  border-radius: 4px;
+}
+
+/* Notification log */
+.notification-log {
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 0.85rem;
+}
